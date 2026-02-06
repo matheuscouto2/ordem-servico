@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <nav id="menu-items">
+        <button id="dash" onclick="loadDashboard()">Dashboard</button>
+        <button id="clientes" onclick="loadClientes()">Clientes</button>
+        <button id="tecnicos" onclick="loadTecnicos()">Técnicos</button>
+        <button id="ordens" onclick="loadOrdens()">Ordens de Serviço</button>
+        <button onclick="logout()">Sair</button>
+    </nav>
+
+    <main id="conteudo">
+        <h2>Bem-vindo ao Ordem de Serviço</h2>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="js/tecnicos.js"></script>
+    <script src="js/ordens.js"></script>
+
+    <script>
+        loadDashboard();
+        function ativarMenu(idBotao) {
+            const botoes = document.querySelectorAll("#menu-items button");
+            botoes.forEach(btn => btn.classList.remove("active"));
+
+            const botaoAtivo = document.getElementById(idBotao);
+            if (botaoAtivo) {
+                botaoAtivo.classList.add("active");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

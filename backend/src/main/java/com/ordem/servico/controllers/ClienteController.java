@@ -38,7 +38,7 @@ public class ClienteController {
         }
         Cliente cliente = clienteRepositorio.getReferenceById(dados.id());
         cliente.atualizaInformacoes(dados);
-        return ResponseEntity.ok(dados);
+        return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/{id}")

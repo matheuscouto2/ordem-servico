@@ -11,13 +11,15 @@ CREATE TABLE tecnico(
     especialidade VARCHAR(100)
 );
 
-CREATE TABLE ordem_servico(
+CREATE TABLE ordem(
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT,
     tecnico_id INT,
     abertura DATE,
     status VARCHAR(100),
-    descricao LONGTEXT
+    descricao LONGTEXT,
+    FOREIGN KEY(cliente_id) REFERENCES cliente(id),
+    FOREIGN KEY(tecnico_id) REFERENCES tecnico(id)
 );
 
 CREATE TABLE usuario(

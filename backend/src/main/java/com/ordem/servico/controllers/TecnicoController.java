@@ -38,7 +38,7 @@ public class TecnicoController {
         }
         Tecnico tecnico = tecnicoRepositorio.getReferenceById(dados.id());
         tecnico.atualizaInformacoes(dados);
-        return ResponseEntity.ok(dados);
+        return ResponseEntity.ok(tecnico);
     }
 
     @DeleteMapping("/{id}")

@@ -19,7 +19,7 @@ public class Tecnico {
 
     public Tecnico(DadosCadastroTecnico dados) {
         this.nome = dados.nome();
-        this.especialidade = dados.especilialidade();
+        this.especialidade = dados.especialidade();
     }
 
     public void atualizaInformacoes(DadosAlteracaoTecnico dados) {

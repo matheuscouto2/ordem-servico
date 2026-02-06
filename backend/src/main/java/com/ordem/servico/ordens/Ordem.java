@@ -47,13 +47,13 @@ public class Ordem {
             this.status = dados.status();
         }
         if (dados.descricao() != null) {
-            this.descricao = descricao;
+            this.descricao = dados.descricao();
         }
         if (cliente != null) {
-            this.cliente = dados.cliente();
+            this.cliente = cliente;
         }
         if (tecnico != null) {
-            this.tecnico = dados.tecnico();
+            this.tecnico = tecnico;
         }
     }
 }
