@@ -6,21 +6,45 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <nav id="menu-items">
-        <button id="dash" onclick="loadDashboard()">Dashboard</button>
-        <button id="clientes" onclick="loadClientes()">Clientes</button>
-        <button id="tecnicos" onclick="loadTecnicos()">Técnicos</button>
-        <button id="ordens" onclick="loadOrdens()">Ordens de Serviço</button>
-        <button onclick="logout()">Sair</button>
-    </nav>
+    <div class="layout">
 
-    <main id="conteudo">
-        <h2>Bem-vindo ao Ordem de Serviço</h2>
-    </main>
+        <aside class="sidebar">
+            <h1>WorkOrder</h1>
+
+            <button onclick="loadDashboard()" id="dash">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </button>
+
+            <button onclick="loadClientes()" id="clientes">
+                <i class="fa-solid fa-users"></i>
+                Clientes
+            </button>
+
+            <button onclick="loadTecnicos()" id="tecnicos">
+                <i class="fa-solid fa-user-gear"></i>
+                Técnicos
+            </button>
+
+            <button onclick="loadOrdens()" id="ordens">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Ordens
+            </button>
+
+            <button class="logout" onclick="logout()">Sair</button>
+        </aside>
+
+        <main id="conteudo">
+            <h2>Bem-vindo</h2>
+        </main>
+
+    </div>
 
     <script src="js/dashboard.js"></script>
     <script src="js/api.js"></script>
@@ -31,7 +55,7 @@
     <script>
         loadDashboard();
         function ativarMenu(idBotao) {
-            const botoes = document.querySelectorAll("#menu-items button");
+            const botoes = document.querySelectorAll(".sidebar button");
             botoes.forEach(btn => btn.classList.remove("active"));
 
             const botaoAtivo = document.getElementById(idBotao);
@@ -39,6 +63,21 @@
                 botaoAtivo.classList.add("active");
             }
         }
+
+        function toggleMenu(btn) {
+            document.querySelectorAll('.menu-acoes.open')
+                .forEach(m => m.classList.remove('open'));
+
+            btn.closest('.menu-acoes').classList.toggle('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.menu-acoes')) {
+                document.querySelectorAll('.menu-acoes.open')
+                    .forEach(m => m.classList.remove('open'));
+            }
+        });
+
     </script>
 
 </body>

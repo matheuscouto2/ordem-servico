@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Table(name = "ordem")
 @Entity(name = "ordens")
@@ -30,22 +31,20 @@ public class Ordem {
     private String status;
     @Lob
     private String descricao;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime horaAbertura;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime horaFechamento;
 
     public Ordem(DadosCadastroOrdem dados, Cliente cliente, Tecnico tecnico) {
         this.abertura = dados.abertura();
-        this.status = dados.status();
+        this.status = "ABERTA";
         this.descricao = dados.descricao();
         this.cliente = cliente;
         this.tecnico = tecnico;
     }
 
     public void atualizaInformacoes(DadosAlteracaoOrdem dados, Cliente cliente, Tecnico tecnico) {
-        if (dados.abertura() != null) {
-            this.abertura = dados.abertura();
-        }
-        if (dados.status() != null) {
-            this.status = dados.status();
-        }
         if (dados.descricao() != null) {
             this.descricao = dados.descricao();
         }
@@ -54,6 +53,16 @@ public class Ordem {
         }
         if (tecnico != null) {
             this.tecnico = tecnico;
+        }
+    }
+
+    public void atualizaStatus(String status, LocalTime horaAbertura, LocalTime horaFechamento) {
+        this.status = status;
+        if (horaAbertura != null) {
+            this.horaAbertura = horaAbertura;
+        }
+        if (horaFechamento != null) {
+            this.horaFechamento = horaFechamento;
         }
     }
 }

@@ -5,4 +5,4 @@ import com.ordem.servico.tecnicos.Tecnico;
 
 import java.time.LocalDate;
 
-public record DadosCadastroOrdem(Long clienteId, Long tecnicoId, LocalDate abertura, String status, String descricao) { }
+public record DadosCadastroOrdem(Long clienteId, Long tecnicoId, LocalDate abertura, String descricao) { }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalTime;
 
 @RestController
 @RequestMapping("/ordens")
@@ -82,5 +83,38 @@ public class OrdemController {
         }
         Ordem ordem = ordemRepositorio.getReferenceById(id);
         return ResponseEntity.ok(new DadosListagemOrdem(ordem));
+    }
+
+    @PostMapping("/{id}/iniciar")
+    @Transactional
+    public ResponseEntity<?> iniciar(@PathVariable Long id) {
+        if (!ordemRepositorio.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Ordem ordem = ordemRepositorio.getReferenceById(id);
+        ordem.atualizaStatus("EM_ANDAMENTO", LocalTime.now(), null);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/finalizar")
+    @Transactional
+    public ResponseEntity<?> finalizar(@PathVariable Long id) {
+        if (!ordemRepositorio.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Ordem ordem = ordemRepositorio.getReferenceById(id);
+        ordem.atualizaStatus("FINALIZADA", null, LocalTime.now());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/cancelar")
+    @Transactional
+    public ResponseEntity<?> cancelar(@PathVariable Long id) {
+        if (!ordemRepositorio.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Ordem ordem = ordemRepositorio.getReferenceById(id);
+        ordem.atualizaStatus("CANCELADA", null, null);
+        return ResponseEntity.ok().build();
     }
 }

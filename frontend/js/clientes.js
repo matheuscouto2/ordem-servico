@@ -6,15 +6,15 @@ function loadClientes() {
             let html = `
                 <div class="div-header-container">
                     <h2>Clientes</h2>
-                    <button onclick="formNovoCliente()">+ NOVO</button>
+                    <button class="btn-novo" onclick="formNovoCliente()">+ NOVO</button>
                 </div>
                 <table>
                     <tr>
                         <th style="display:none;">ID</th>
-                        <th class="col-acoes"></th>
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Email</th>
+                        <th class="col-acoes"></th>
                     </tr>
             `;
 
@@ -22,13 +22,13 @@ function loadClientes() {
                 html += `
                     <tr>
                         <td style="display:none;">${b.id}</td>
-                        <td class="col-acoes">
-                            <button onclick="editarCliente(${b.id})">Editar</button>
-                            <button onclick="excluirCliente(${b.id})">Excluir</button>
-                        </td>
                         <td>${b.nome}</td>
                         <td>${b.telefone}</td>
                         <td>${b.email}</td>
+                        <td class="col-acoes">
+                            <button onclick="editarOrdem(${b.id})" class="icon-btn edit"><i class="fa fa-edit"></i></button>
+                            <button onclick="excluirOrdem(${b.id})" class="icon-btn delete"><i class="fa fa-times"></i></button>
+                        </td>
                     </tr>
                 `;
             });

@@ -18,6 +18,8 @@ CREATE TABLE ordem(
     abertura DATE,
     status VARCHAR(100),
     descricao LONGTEXT,
+    hora_abertura TIME,
+    hora_fechamento TIME,
     FOREIGN KEY(cliente_id) REFERENCES cliente(id),
     FOREIGN KEY(tecnico_id) REFERENCES tecnico(id)
 );
