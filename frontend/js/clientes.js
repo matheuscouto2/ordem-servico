@@ -1,8 +1,16 @@
-function loadClientes() {
+function loadClientes(pagina = 1) {
     ativarMenu("clientes");
     fetch(API + "/clientes", { headers: getHeaders() })
         .then(res => res.json())
         .then(data => {
+
+
+            const itensPorPagina = 5;
+            const totalPaginas = Math.ceil(data.length / itensPorPagina);
+            const inicio = (pagina - 1) * itensPorPagina;
+            const fim = inicio + itensPorPagina;
+            const dadosPaginados = data.slice(inicio, fim);
+
             let html = `
                 <div class="div-header-container">
                     <h2>Clientes</h2>
@@ -18,7 +26,7 @@ function loadClientes() {
                     </tr>
             `;
 
-            data.forEach(b => {
+            dadosPaginados.forEach(b => {
                 html += `
                     <tr>
                         <td style="display:none;">${b.id}</td>
@@ -34,19 +42,52 @@ function loadClientes() {
             });
 
             html += "</table>";
+
+            // Paginação
+            html += `<div class="paginacao">`;
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                html += `
+                    <button 
+                        onclick="loadClientes(${i})" 
+                        class="${i === pagina ? "active-page" : ""}">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            html += `</div>`;
+
             document.getElementById("conteudo").innerHTML = html;
         });
 }
 
 function formNovoCliente() {
     document.getElementById("conteudo").innerHTML = `
-        <h2>Novo Cliente</h2>
+        <div class="form-container">
+            <h2>Novo Cliente</h2>
 
-        <input id="nome" type="text" placeholder="Nome">
-        <input id="telefone" type="text" placeholder="Telefone">
-        <input id="email" placeholder="Email">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input id="nome" type="text" placeholder="Digite o nome">
+                </div>
 
-        <button onclick="salvarCliente()">Salvar</button>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input id="telefone" type="text" placeholder="Digite o telefone">
+                </div>
+
+                <div class="form-group full">
+                    <label>Email</label>
+                    <input id="email" type="email" placeholder="Digite o email">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary" onclick="salvarCliente()">Salvar</button>
+            </div>
+        </div>
     `;
 }
 

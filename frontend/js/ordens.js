@@ -1,8 +1,15 @@
-function loadOrdens() {
+function loadOrdens(pagina = 1) {
     ativarMenu("ordens");
     fetch(API + "/ordens", { headers: getHeaders() })
         .then(res => res.json())
         .then(data => {
+
+            const itensPorPagina = 5;
+            const totalPaginas = Math.ceil(data.length / itensPorPagina);
+            const inicio = (pagina - 1) * itensPorPagina;
+            const fim = inicio + itensPorPagina;
+            const dadosPaginados = data.slice(inicio, fim);
+
             let html = `
                 <div class="div-header-container">
                     <h2>Ordens de Serviço</h2>
@@ -20,7 +27,7 @@ function loadOrdens() {
                     </tr>
             `;
 
-            data.forEach(b => {
+            dadosPaginados.forEach(b => {
                 html += `
                     <tr>
                         <td style="display:none;">${b.id}</td>
@@ -81,13 +88,30 @@ function loadOrdens() {
             });
 
             html += "</table>";
+
+            // Paginação
+            html += `<div class="paginacao">`;
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                html += `
+                    <button 
+                        onclick="loadOrdens(${i})" 
+                        class="${i === pagina ? "active-page" : ""}">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            html += `</div>`;
+
             document.getElementById("conteudo").innerHTML = html;
         });
 }
 
 function formNovoOrdem() {
     document.getElementById("conteudo").innerHTML = `
-       
+        <div class="form-container">
+
             <h2>Nova Ordem de Serviço</h2>
 
             <div class="form-grid">
@@ -105,7 +129,7 @@ function formNovoOrdem() {
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group full">
                     <label>Data de abertura</label>
                     <input id="abertura" type="date">
                 </div>
@@ -120,6 +144,7 @@ function formNovoOrdem() {
             <div class="form-actions">
                 <button class="btn-primary" onclick="salvarOrdem()">Salvar</button>
                 <button class="btn-secondary" onclick="loadOrdens()">Cancelar</button>
+            </div>
             </div>
         
     `;

@@ -74,6 +74,7 @@ main {
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, .06);
+    height: fit-content;
 }
 
 h2 {
@@ -664,36 +665,133 @@ main {
     max-height: 220px !important;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px 24px;
-    margin-top: 20px;
+/* Container geral */
+.form-container {
+    max-width: 720px;
+    padding: 32px;
+
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
+/* Título */
+.form-container h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Grupo */
 .form-group {
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
 
 .form-group.full {
     grid-column: 1 / -1;
 }
 
+/* Labels */
 .form-group label {
     font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-    font-weight: 600;
+    font-weight: 500;
+    color: #6b7280;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 12px 14px;
+/* Inputs */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    height: 42px;
+    padding: 0 14px;
+
+    border: 1px solid #e5e7eb;
     border-radius: 10px;
-    border: 1px solid var(--border);
+
     font-size: 14px;
+    color: var(--text);
+
+    background: #f9fafb;
+
+    transition: all 0.2s ease;
+    min-width: 100%;
+}
+
+.form-container textarea {
+    height: auto;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+/* Focus elegante */
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Ações */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Botões */
+.btn-primary,
+.form-container button {
+    height: 42px;
+    padding: 0 20px;
+
+    border-radius: 999px;
+    border: none;
+
+    font-weight: 500;
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+/* Botão principal */
+.btn-primary,
+.form-container button:not(.btn-secondary) {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover,
+.form-container button:not(.btn-secondary):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Botão secundário */
+.btn-secondary {
+    background: #f3f4f6;
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
 }
 
 .form-actions {
@@ -701,4 +799,52 @@ main {
     gap: 12px;
     justify-content: flex-end;
     margin-top: 28px;
+}
+
+.paginacao {
+    margin-top: 32px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.paginacao button {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 14px;
+
+    background: #f9fafb;
+    border: 1px solid transparent;
+    border-radius: 999px;
+
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.paginacao button:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.paginacao button:active {
+    transform: scale(0.96);
+}
+
+.paginacao button.active-page {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
