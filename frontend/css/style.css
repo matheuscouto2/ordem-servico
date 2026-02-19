@@ -232,6 +232,7 @@ button:hover {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -310,22 +311,22 @@ td:first-child {
 
 .status.ABERTA {
     background: #fff7ed;
-    color: #b45309; 
+    color: #b45309;
 }
 
 .status.EM_ANDAMENTO {
-    background: #eff6ff; 
-    color: #1d4ed8;   
+    background: #eff6ff;
+    color: #1d4ed8;
 }
 
 .status.FINALIZADA {
-    background: #ecfdf5;  
-    color: #047857;   
+    background: #ecfdf5;
+    color: #047857;
 }
 
 .status.CANCELADA {
     background: #fef2f2;
-    color: #b91c1c; 
+    color: #b91c1c;
 }
 
 @media (max-width: 768px) {
@@ -545,24 +546,24 @@ main {
     border: none;
     cursor: pointer;
 
-    box-shadow: 
-        0 8px 18px rgba(59,130,246,.35),
-        inset 0 -1px 0 rgba(255,255,255,.15);
+    box-shadow:
+        0 8px 18px rgba(59, 130, 246, .35),
+        inset 0 -1px 0 rgba(255, 255, 255, .15);
 
     transition: all .25s ease;
 }
 
 .btn-novo:hover {
     transform: translateY(-2px);
-    box-shadow: 
-        0 12px 26px rgba(59,130,246,.45),
-        inset 0 -1px 0 rgba(255,255,255,.2);
+    box-shadow:
+        0 12px 26px rgba(59, 130, 246, .45),
+        inset 0 -1px 0 rgba(255, 255, 255, .2);
 }
 
 .btn-novo:active {
     transform: translateY(0);
-    box-shadow: 
-        0 6px 14px rgba(59,130,246,.3);
+    box-shadow:
+        0 6px 14px rgba(59, 130, 246, .3);
 }
 
 .col-acoes-custom {
@@ -588,7 +589,7 @@ main {
     border: 1px solid #eee;
     border-radius: 6px;
     min-width: 140px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     display: none;
     z-index: 10;
 }
@@ -663,18 +664,18 @@ main {
     border: 1px solid #0f172a;
     color: #0f172a;
 
-    box-shadow: 
+    box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-    transition: 
+    transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
 
 .dashboard-cards .card:hover {
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
         0 8px 20px rgba(0, 0, 0, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
@@ -694,10 +695,29 @@ main {
     color: white;
 }
 
-.card.warning { background: #4220062e; border: 1px solid #422006; color: #422006;  }
-.card.info { background: #1e293b2b; border: 1px solid #1e293b; color: #1e293b; }
-.card.success { background: #064e3b21; border: 1px solid #064e3b; color: #064e3b; }
-.card.danger { background: #450a0a33; border: 1px solid #450a0a; color: #450a0a; }
+.card.warning {
+    background: #4220062e;
+    border: 1px solid #422006;
+    color: #422006;
+}
+
+.card.info {
+    background: #1e293b2b;
+    border: 1px solid #1e293b;
+    color: #1e293b;
+}
+
+.card.success {
+    background: #064e3b21;
+    border: 1px solid #064e3b;
+    color: #064e3b;
+}
+
+.card.danger {
+    background: #450a0a33;
+    border: 1px solid #450a0a;
+    color: #450a0a;
+}
 
 .dashboard-graficos {
     display: grid;
@@ -711,7 +731,7 @@ main {
     border-radius: 14px;
     padding: 14px 16px;
     border: 1px solid var(--border);
-    box-shadow: 0 10px 25px rgba(0,0,0,.04);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .04);
     height: 260px;
     display: flex;
     flex-direction: column;
@@ -893,7 +913,7 @@ main {
 
     cursor: pointer;
 
-    transition: 
+    transition:
         background 0.25s ease,
         color 0.25s ease,
         transform 0.15s ease,

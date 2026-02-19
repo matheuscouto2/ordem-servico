@@ -1,4 +1,4 @@
-function loadDashboard() {
+function loadDashboard(pagina = 1) {
     ativarMenu("dash");
 
     fetch(API + "/dashboard", {
@@ -11,15 +11,22 @@ function loadDashboard() {
             return response.json();
         })
         .then(data => {
-            renderDashboard(data);
+            renderDashboard(data, pagina);
         })
         .catch(err => {
             Swal.fire("Erro", err.message, "error");
         });
 }
 
-function renderDashboard(d) {
-    const html = `
+function renderDashboard(d, pagina) {
+
+    const itensPorPagina = 5;
+    const totalPaginas = Math.ceil(d.ultimasOrdens.length / itensPorPagina);
+    const inicio = (pagina - 1) * itensPorPagina;
+    const fim = inicio + itensPorPagina;
+    const dadosPaginados = d.ultimasOrdens.slice(inicio, fim);
+
+    let html = `
         <h2>Dashboard</h2>
 
         <div class="dashboard-cards">
@@ -75,7 +82,7 @@ function renderDashboard(d) {
                 </tr>
             </thead>
             <tbody>
-                ${d.ultimasOrdens.map(o => `
+                ${dadosPaginados.map(o => `
                     <tr>
                         <td><span class="status ${o.status}">${o.status.replace("_", " ")}</span></td>
                         <td>${formatarData(o.abertura)}</td>
@@ -88,13 +95,27 @@ function renderDashboard(d) {
         </table>
     `;
 
+    html += `<div class="paginacao">`;
+
+    for (let i = 1; i <= totalPaginas; i++) {
+        html += `
+                    <button 
+                        onclick="loadDashboard(${i})" 
+                        class="${i === pagina ? "active-page" : ""}">
+                        ${i}
+                    </button>
+                `;
+    }
+
+    html += `</div>`;
+
     document.getElementById("conteudo").innerHTML = html;
 
-    
-setTimeout(() => {
-    renderGraficoStatus(d);
-    carregarGraficoAberturas();
-}, 0);
+
+    setTimeout(() => {
+        renderGraficoStatus(d);
+        carregarGraficoAberturas();
+    }, 0);
 }
 
 function renderGraficoStatus(d) {

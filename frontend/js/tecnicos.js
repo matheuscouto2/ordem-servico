@@ -87,7 +87,7 @@ function formNovoTecnico() {
 function salvarTecnico() {
     const nome = document.getElementById("nome").value;
     const especialidade = document.getElementById("especialidade").value;
-    
+
     fetch(API + "/tecnicos", {
         method: "POST",
         headers: getHeaders(),
