@@ -74,7 +74,6 @@ main {
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, .06);
-    height: fit-content;
 }
 
 h2 {
@@ -115,8 +114,6 @@ button:hover {
     background: var(--primary-dark);
     transform: translateY(-1px);
 }
-
-/* ===== LOGIN PAGE ===== */
 
 .login-body {
     display: flex;
@@ -308,6 +305,7 @@ td:first-child {
     justify-content: center;
     min-width: 110px;
     letter-spacing: .3px;
+    border: 1px solid;
 }
 
 .status.ABERTA {
@@ -655,6 +653,7 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 16px;
     margin: 20px 0;
+    margin-bottom: 50px;
 }
 
 .dashboard-cards .card {
@@ -746,6 +745,7 @@ main {
     display: flex;
     flex-direction: column;
     border: 1px solid #0f172a47;
+    height: -webkit-fill-available;
 }
 
 .form-container h2 {
@@ -867,7 +867,7 @@ main {
     display: flex;
     gap: 12px;
     justify-content: flex-end;
-    margin-top: 28px;
+    margin-top: auto;
 }
 
 .paginacao {

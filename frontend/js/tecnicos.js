@@ -4,7 +4,7 @@ function loadTecnicos(pagina = 1) {
         .then(res => res.json())
         .then(data => {
 
-            const itensPorPagina = 5;
+            const itensPorPagina = 15;
             const totalPaginas = Math.ceil(data.length / itensPorPagina);
             const inicio = (pagina - 1) * itensPorPagina;
             const fim = inicio + itensPorPagina;

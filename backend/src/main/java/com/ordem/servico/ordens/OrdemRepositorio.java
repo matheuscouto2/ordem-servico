@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface OrdemRepositorio extends JpaRepository<Ordem, Long> {
-    List<Ordem> findTop5ByOrderByAberturaDesc();
+    List<Ordem> findTop10ByOrderByAberturaDesc();
 
     long countByStatus(String status);
 

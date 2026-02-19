@@ -26,7 +26,7 @@ public class DashboardController {
         long finalizadas = ordemRepositorio.countByStatus("FINALIZADA");
         long canceladas = ordemRepositorio.countByStatus("CANCELADA");
 
-        var ultimasOrdens = ordemRepositorio.findTop5ByOrderByAberturaDesc().stream().map(DadosIndicadoresOrdem::new).toList();
+        var ultimasOrdens = ordemRepositorio.findTop10ByOrderByAberturaDesc().stream().map(DadosIndicadoresOrdem::new).toList();
         return ResponseEntity.ok(new DadosIndicadores(total, abertas, emAtendimento, finalizadas, canceladas, ultimasOrdens));
     }
 
