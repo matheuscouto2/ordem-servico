@@ -112,7 +112,7 @@ function formNovoOrdem() {
     document.getElementById("conteudo").innerHTML = `
         <div class="form-container">
 
-            <h2>Nova Ordem de Serviço</h2>
+            <h2>Vamos criar algo novo?</h2>
 
             <div class="form-grid">
                 <div class="form-group">
@@ -142,8 +142,8 @@ function formNovoOrdem() {
             </div>
 
             <div class="form-actions">
-                <button class="btn-primary" onclick="salvarOrdem()">Salvar</button>
                 <button class="btn-secondary" onclick="loadOrdens()">Cancelar</button>
+                <button class="btn-primary" onclick="salvarOrdem()">Salvar</button>
             </div>
             </div>
         
@@ -199,22 +199,51 @@ function editarOrdem(id) {
     fetch(API + "/ordens/" + id, { headers: getHeaders() })
         .then(res => res.json())
         .then(ordem => {
+
             const clienteId = ordem.clienteId;
             const tecnicoId = ordem.tecnicoId;
-            document.getElementById("conteudo").innerHTML = `
-                <h2>Editar Ordem</h2>
 
-                <input id="id" type="hidden" value="${ordem.id}">
-                <select id="cliente">
-                    <option value="">Selecione o cliente</option>
-                </select>
-                <select id="tecnico">
-                    <option value="">Selecione o técnico</option>
-                </select>
-                <input id="abertura" type="date" value="${ordem.abertura}" disabled>
-                <input id="descricao" placeholder="Descrição" value="${ordem.descricao}">
-                <button onclick="atualizarOrdem()">Atualizar</button>
+            document.getElementById("conteudo").innerHTML = `
+                <div class="form-container">
+
+                    <h2>Hora de mexer nos detalhes...</h2>
+
+                    <input id="id" type="hidden" value="${ordem.id}">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <select id="cliente">
+                                <option value="">Selecione o cliente</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Técnico</label>
+                            <select id="tecnico">
+                                <option value="">Selecione o técnico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Data de abertura</label>
+                            <input id="abertura" type="date" value="${ordem.abertura}" disabled>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Descrição</label>
+                            <textarea id="descricao" rows="4">${ordem.descricao || ""}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-secondary" onclick="loadOrdens()">Cancelar</button>
+                        <button class="btn-primary" onclick="atualizarOrdem()">Atualizar</button>
+                    </div>
+
+                </div>
             `;
+
             carregarClientes(clienteId);
             carregarTecnicos(tecnicoId);
         });

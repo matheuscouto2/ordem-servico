@@ -62,7 +62,7 @@ function loadTecnicos(pagina = 1) {
 function formNovoTecnico() {
     document.getElementById("conteudo").innerHTML = `
         <div class="form-container">
-            <h2>Novo Técnico</h2>
+            <h2>Vamos criar algo novo?</h2>
 
             <div class="form-grid">
                 <div class="form-group">
@@ -77,6 +77,7 @@ function formNovoTecnico() {
             </div>
 
             <div class="form-actions">
+                <button class="btn-secondary" onclick="loadTecnicos()">Cancelar</button>
                 <button class="btn-primary" onclick="salvarTecnico()">Salvar</button>
             </div>
         </div>
@@ -123,12 +124,28 @@ function editarTecnico(id) {
         .then(res => res.json())
         .then(tecnico => {
             document.getElementById("conteudo").innerHTML = `
-                <h2>Editar Técnico</h2>
+                <div class="form-container">
+                    <h2>Hora de mexer nos detalhes...</h2>
 
-                <input id="id" type="hidden" value="${tecnico.id}">
-                <input id="nome" type="text" value="${tecnico.nome}">
-                <input id="especialidade" type="text" value="${tecnico.especialidade}">
-                <button onclick="atualizarTecnico()">Atualizar</button>
+                    <input id="id" type="hidden" value="${tecnico.id}">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input id="nome" type="text" value="${tecnico.nome}" placeholder="Digite o nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Especialidade</label>
+                            <input id="especialidade" type="text" value="${tecnico.especialidade}" placeholder="Digite a especialidade">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-secondary" onclick="loadTecnicos()">Cancelar</button>
+                        <button class="btn-primary" onclick="atualizarTecnico()">Atualizar</button>
+                    </div>
+                </div>
             `;
         });
 }

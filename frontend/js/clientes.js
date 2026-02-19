@@ -34,8 +34,8 @@ function loadClientes(pagina = 1) {
                         <td>${b.telefone}</td>
                         <td>${b.email}</td>
                         <td class="col-acoes">
-                            <button onclick="editarOrdem(${b.id})" class="icon-btn edit"><i class="fa fa-edit"></i></button>
-                            <button onclick="excluirOrdem(${b.id})" class="icon-btn delete"><i class="fa fa-times"></i></button>
+                            <button onclick="editarCliente(${b.id})" class="icon-btn edit"><i class="fa fa-edit"></i></button>
+                            <button onclick="excluirCliente(${b.id})" class="icon-btn delete"><i class="fa fa-times"></i></button>
                         </td>
                     </tr>
                 `;
@@ -65,7 +65,7 @@ function loadClientes(pagina = 1) {
 function formNovoCliente() {
     document.getElementById("conteudo").innerHTML = `
         <div class="form-container">
-            <h2>Novo Cliente</h2>
+            <h2>Vamos criar algo novo?</h2>
 
             <div class="form-grid">
                 <div class="form-group">
@@ -85,6 +85,7 @@ function formNovoCliente() {
             </div>
 
             <div class="form-actions">
+                <button class="btn-secondary" onclick="loadClientes()">Cancelar</button>
                 <button class="btn-primary" onclick="salvarCliente()">Salvar</button>
             </div>
         </div>
@@ -133,13 +134,33 @@ function editarCliente(id) {
         .then(res => res.json())
         .then(cliente => {
             document.getElementById("conteudo").innerHTML = `
-                <h2>Editar Cliente</h2>
+                <div class="form-container">
+                    <h2>Hora de mexer nos detalhes...</h2>
 
-                <input id="id" type="hidden" value="${cliente.id}">
-                <input id="nome" type="text" value="${cliente.nome}">
-                <input id="telefone" type="text" value="${cliente.telefone}">
-                <input id="email" type="text" value="${cliente.email}">
-                <button onclick="atualizarCliente()">Atualizar</button>
+                    <input id="id" type="hidden" value="${cliente.id}">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input id="nome" type="text" value="${cliente.nome}" placeholder="Digite o nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input id="telefone" type="text" value="${cliente.telefone}" placeholder="Digite o telefone">
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Email</label>
+                            <input id="email" type="email" value="${cliente.email}" placeholder="Digite o email">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-secondary" onclick="loadClientes()">Cancelar</button>
+                        <button class="btn-primary" onclick="atualizarCliente()">Atualizar</button>
+                    </div>
+                </div>
             `;
         });
 }

@@ -3,21 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - Controle Patrimonial</title>
+    <title>WorkOrder</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body style="display: flex; align-items: center; justify-content: center;">
+<body class="login-body">
 
     <div class="login-container">
-        <h2>Ordem de Serviço</h2>
+        <div class="login-header">
+            <h1>WorkOrder</h1>
+            <p>Sistema de Ordem de Serviço</p>
+        </div>
 
-        <input type="text" id="usuario" placeholder="Usuário" autocomplete="off">
-        <input type="password" id="senha" placeholder="Senha" autocomplete="off">
+        <div class="login-form">
+            <div class="login-field">
+                <i class="fa fa-user"></i>
+                <input type="text" id="usuario" class="login-input" placeholder="Usuário" autocomplete="off">
+            </div>
 
-        <button onclick="login()">Entrar</button>
+            <div class="login-field">
+                <i class="fa fa-lock"></i>
+                <input type="password" id="senha" class="login-input" placeholder="Senha" autocomplete="off">
+            </div>
 
-        <p id="msg"></p>
+            <button class="login-button" onclick="login()">Entrar</button>
+
+            <a href="#" class="login-link">Esqueci minha senha</a>
+
+            <p id="msg" class="login-msg"></p>
+        </div>
     </div>
 
     <script src="js/auth.js"></script>
