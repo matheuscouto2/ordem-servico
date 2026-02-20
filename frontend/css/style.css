@@ -967,3 +967,125 @@ main {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+@media (max-width: 768px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .layout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 220px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    main {
+        padding: 16px;
+        overflow: visible;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .cards,
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-cards .card strong {
+        font-size: 20px;
+    }
+
+    .dashboard-graficos {
+        grid-template-columns: 1fr;
+    }
+
+    .grafico-box {
+        height: auto;
+    }
+
+    .grafico-box canvas {
+        max-height: 200px !important;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    .col-acoes-custom {
+        gap: 4px;
+    }
+
+    .icon-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .form-container h2 {
+        position: static;
+        top: auto;
+        margin-bottom: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .paginacao {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .paginacao button {
+        min-width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+
+    .login-container {
+        margin: 20px;
+        padding: 35px 25px;
+    }
+
+    .login-header h1 {
+        font-size: 20px;
+    }
+
+}
