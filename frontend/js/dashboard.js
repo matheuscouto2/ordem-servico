@@ -1,5 +1,6 @@
 function loadDashboard(pagina = 1) {
     ativarMenu("dash");
+    showLoading();
 
     fetch(API + "/dashboard", {
         headers: getHeaders()
@@ -15,6 +16,9 @@ function loadDashboard(pagina = 1) {
         })
         .catch(err => {
             Swal.fire("Erro", err.message, "error");
+        })
+        .finally(() => {
+            hideLoading();
         });
 }
 

@@ -1,5 +1,7 @@
 function loadTecnicos(pagina = 1) {
     ativarMenu("tecnicos");
+    showLoading();
+
     fetch(API + "/tecnicos", { headers: getHeaders() })
         .then(res => res.json())
         .then(data => {
@@ -56,6 +58,12 @@ function loadTecnicos(pagina = 1) {
             html += `</div>`;
 
             document.getElementById("conteudo").innerHTML = html;
+        })
+        .catch(err => {
+            alert("Erro ao carregar dados: ", err);
+        })
+        .finally(() => {
+            hideLoading();
         });
 }
 
