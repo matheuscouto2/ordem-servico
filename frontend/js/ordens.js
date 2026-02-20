@@ -162,6 +162,15 @@ function salvarOrdem() {
     const abertura = document.getElementById("abertura").value;
     const descricao = document.getElementById("descricao").value;
 
+    if (!clienteId || !tecnicoId || !abertura || !descricao) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
+
     fetch(API + "/ordens", {
         method: "POST",
         headers: getHeaders(),
@@ -254,6 +263,15 @@ function atualizarOrdem() {
     const clienteId = document.getElementById("cliente").value;
     const tecnicoId = document.getElementById("tecnico").value;
     const descricao = document.getElementById("descricao").value;
+
+    if (!clienteId || !tecnicoId || !descricao) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
 
     fetch(API + "/ordens", {
         method: "PUT",

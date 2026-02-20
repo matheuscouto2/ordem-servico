@@ -97,6 +97,15 @@ function salvarCliente() {
     const telefone = document.getElementById("telefone").value;
     const email = document.getElementById("email").value;
 
+    if (!nome || !telefone || !email) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
+
     fetch(API + "/clientes", {
         method: "POST",
         headers: getHeaders(),
@@ -170,6 +179,15 @@ function atualizarCliente() {
     const nome = document.getElementById("nome").value;
     const telefone = document.getElementById("telefone").value;
     const email = document.getElementById("email").value;
+
+    if (!nome || !telefone || !email) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
 
     fetch(API + "/clientes", {
         method: "PUT",

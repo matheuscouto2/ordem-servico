@@ -1,4 +1,4 @@
-const API = "http://localhost:8080";
+const API = "https://ordem-servico-754x.onrender.com";
 
 function getHeaders() {
     return {

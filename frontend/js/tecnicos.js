@@ -88,6 +88,15 @@ function salvarTecnico() {
     const nome = document.getElementById("nome").value;
     const especialidade = document.getElementById("especialidade").value;
 
+    if (!nome || !especialidade) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
+
     fetch(API + "/tecnicos", {
         method: "POST",
         headers: getHeaders(),
@@ -154,6 +163,15 @@ function atualizarTecnico() {
     const id = document.getElementById("id").value;
     const nome = document.getElementById("nome").value;
     const especialidade = document.getElementById("especialidade").value;
+
+    if (!nome || !especialidade) {
+        Swal.fire({
+            icon: "error",
+            title: "Erro",
+            text: "Todos os campos são obrigatórios"
+        });
+        return;
+    }
 
     fetch(API + "/tecnicos", {
         method: "PUT",
