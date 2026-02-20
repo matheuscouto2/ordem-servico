@@ -200,21 +200,29 @@ function formatarData(data) {
     return `${dia}/${mes}/${ano}`;
 }
 
-function isTokenExpired(token) {
-    if (!token) return true;
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const exp = payload.exp * 1000;
-    return Date.now() > exp;
-}
-
 function checkAuth() {
-    const token = localStorage.getItem("token");
+    fetch(API + "/dashboard", {
+        headers: getHeaders()
+    })
+    .then(response => {
+        if (response.status === 401) {
+            localStorage.removeItem("token");
+            window.location.href = "index.html";
+            return;
+        }
 
-    if (!token || isTokenExpired(token)) {
-        localStorage.removeItem("token");
-        window.location.href = "index.html";
-    }
+        if (!response.ok) {
+            throw new Error("Erro ao carregar dados");
+        }
+
+        return response.json();
+    })
+    .then(data => {
+        renderDashboard(data);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 }
 
 checkAuth();
