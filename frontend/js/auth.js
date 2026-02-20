@@ -1,6 +1,7 @@
 function login() {
     const usuario = document.getElementById("usuario").value;
     const senha = document.getElementById("senha").value;
+    showLoading();
 
     fetch("https://ordem-servico-754x.onrender.com/auth", {
         method: "POST",
@@ -19,5 +20,8 @@ function login() {
         })
         .catch(err => {
             document.getElementById("msg").innerText = err.message;
+        })
+        .finally(() => {
+            hideLoading();
         });
 }
