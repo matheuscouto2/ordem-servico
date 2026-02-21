@@ -26,7 +26,7 @@ window.fetch = async function (...args) {
     try {
         const response = await originalFetch(...args);
 
-        if (response.status === 401) {
+        if (response.status === 401 || response.status === 403) {
             logout();
             return Promise.reject("Unauthorized");
         }
