@@ -212,7 +212,7 @@ function checkAuth() {
         }
 
         if (!response.ok) {
-            throw new Error("Erro ao carregar dados");
+            throw new Error("Erro ao carregar dados: " + response.status);
         }
 
         return response.json();
