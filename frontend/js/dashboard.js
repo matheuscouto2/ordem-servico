@@ -1,8 +1,8 @@
 function loadDashboard(pagina = 1) {
+    checkAuth();
     ativarMenu("dash");
     showLoading();
-    
-    checkAuth();
+
 
     fetch(API + "/dashboard", {
         headers: getHeaders()
