@@ -1,8 +1,6 @@
 function loadDashboard(pagina = 1) {
-    checkAuth();
     ativarMenu("dash");
     showLoading();
-
 
     fetch(API + "/dashboard", {
         headers: getHeaders()
@@ -201,30 +199,3 @@ function formatarData(data) {
     const [ano, mes, dia] = data.split("-");
     return `${dia}/${mes}/${ano}`;
 }
-
-function checkAuth() {
-    fetch(API + "/dashboard", {
-        headers: getHeaders()
-    })
-    .then(response => {
-        if (response.status === 401) {
-            localStorage.removeItem("token");
-            window.location.href = "index.html";
-            return;
-        }
-
-        if (!response.ok) {
-            throw new Error("Erro ao carregar dados: " + response.status);
-        }
-
-        return response.json();
-    })
-    .then(data => {
-        renderDashboard(data);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-}
-
-checkAuth();
